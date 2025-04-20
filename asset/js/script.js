@@ -47,6 +47,7 @@ async function main(){
       cardSetBtn.addEventListener("click", function(){
         document.getElementById("home").classList.remove("active");
         document.getElementById("deck").classList.add("active");
+        document.getElementsByTagName("nav")[0].classList.add("active");
         document.getElementById(this.getAttribute("id").replace("Btn", "")).classList.add("active");
       });
 
@@ -93,3 +94,22 @@ async function main(){
 }
 
 main();
+
+document.getElementById("homeBtn").addEventListener("click", function(){
+  document.getElementById("home").classList.add("active");
+  document.getElementById("deck").classList.remove("active");
+  document.getElementsByTagName("nav")[0].classList.remove("active");
+  document.querySelectorAll(".cardSet").forEach(function(value){
+    value.classList.remove("active");
+  });
+});
+
+document.getElementById("shuffle").addEventListener("click", function(){
+  let obj = document.getElementsByClassName("cardSet active")[0]
+  let len = obj.childElementCount;
+  
+  for(var i=0; i<100; i++){
+    let a = Math.floor(Math.random() * len); 
+    obj.appendChild(obj.children[a]);
+  }
+});

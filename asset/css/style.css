@@ -281,3 +281,72 @@ div.card.active>p.cardTop{
 div.card.active>p.cardBack{
   transform: rotateY(0);
 }
+
+div.card:nth-last-of-type(1){
+  margin-bottom: calc(8rem + 4rem);
+}
+
+nav{
+  position: fixed;
+  top: calc(100dvh - 8rem);
+  left: 0;
+  z-index: 5;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+
+  width: 100%;
+  height: 8rem;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: #eeeed8;
+
+  animation: .3s forwards anime-CtoR;
+}
+
+nav.active{
+  animation: .3s forwards anime-RtoC;
+}
+
+nav>button{
+  display: block;
+
+  width: 100%;
+  height: 8rem;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 0;
+
+  background-color: #ddddc8;
+
+  color: #222222;
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 8rem;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+nav>button>i{
+  display: block;
+  margin: 0 1rem 0 0;
+
+  color: #222222;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 8rem;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0;
+}
