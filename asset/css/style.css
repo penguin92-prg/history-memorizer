@@ -13,6 +13,48 @@ html,body{
   font-family: "Noto Sans JP", sans-serif;
 }
 
+div#home{
+  position: absolute;
+  top: 0;
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  animation: .3s forwards anime-CtoL;
+}
+
+div#home.active{
+  animation: .3s forwards anime-LtoC;
+}
+
+@keyframes anime-RtoC {
+  from{
+    display: block;
+  }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes anime-CtoR {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+  to{
+    display: none;
+  }
+}
+
 h1{
   display: block;
 
@@ -99,18 +141,143 @@ main#container>button{
   letter-spacing: 0;
 }
 
-main#deck{
-  display: none;
+div#deck{
+  position: absolute;
+  top: 0;
+  display: block;
 
   width: 100%;
-  height: calc(100dvh - 5rem - 3rem - 3rem);
+  height: auto;
 
-  margin: 3rem 0 0 0;
+  margin: 0;
   padding: 0;
 
-  background-color: #eeeed8;
+  animation: .3s forwards anime-CtoR;
 }
 
-main#deck.active{
+div#deck.active{
+  animation: .3s forwards anime-RtoC;
+}
+
+@keyframes anime-CtoL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+  to{
+    display: none;
+  }
+}
+
+@keyframes anime-LtoC {
+  from{
+    display: block;
+  }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+div.cardSet{
+  display: none;
+
+  width: 80%;
+  height: auto;
+
+  margin: 5rem auto 0 auto;
+  padding: 0;
+}
+
+div.cardSet.active{
   display: block;
+}
+
+div.card{
+  position: relative;
+
+  display: block;
+  
+  width: 100%;
+
+  margin: 4rem auto 0 auto;
+  padding: 0;
+}
+
+div.card>p.cardTop, div.card>p.cardBack{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: calc(100% - 2rem * 2);
+
+  margin: 0;
+  padding: 2rem 2rem;
+
+  background-color: #eeeed8;
+  border: none;
+  border-radius: 2rem;
+  box-shadow:  1rem 1rem 3rem #dddddd,
+               -1rem -1rem 3rem #ffffff;
+
+  backface-visibility: hidden;
+
+  transition: all .3s;
+  transform-origin: center center;
+}
+
+div.card>p.cardTop{
+  display: block;
+  
+  color: #222222;
+  font-size: 2.25rem;
+  font-weight: 500;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  /* line-height: 10rem; */
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+
+  overflow: hidden;
+}
+
+div.card>p.cardBack{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+
+  
+  color: #222222;
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 2.5rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+
+  overflow: hidden;
+}
+
+div.card>p.cardTop{
+  transform: rotateY(0);
+}
+
+div.card>p.cardBack{
+  transform: rotateY(180deg);
+}
+
+div.card.active>p.cardTop{
+  transform: rotateY(180deg);
+}
+
+div.card.active>p.cardBack{
+  transform: rotateY(0);
 }

@@ -41,17 +41,55 @@ async function main(){
       console.log(data);
 
       // カードセットの選択ボタン
-      let cardsetBtn = document.createElement("button");
-      cardsetBtn.setAttribute("id", "set-" + String(i+1));
-      cardsetBtn.innerHTML = data[0][0];
+      let cardSetBtn = document.createElement("button");
+      cardSetBtn.setAttribute("id", "cardSetBtn" + String(i+1));
+      cardSetBtn.innerHTML = data[0][0];
 
-      cardsetBtn.addEventListener("click", function(){
-        document.getElementById("description").classList.remove("active");
-        document.getElementById("container").classList.remove("active");
+      cardSetBtn.addEventListener("click", function(){
+        document.getElementById("home").classList.remove("active");
         document.getElementById("deck").classList.add("active");
+        document.getElementById(this.getAttribute("id").replace("Btn", "")).classList.add("active");
       });
 
-      document.getElementById("container").appendChild(cardsetBtn);
+      document.getElementById("container").appendChild(cardSetBtn);
+
+      console.log(data.length);
+      let cardSet = document.createElement("div");
+      cardSet.classList.add("cardSet");
+      cardSet.setAttribute("id", "cardSet" + String(i+1));
+
+      for(var j=1; j<data.length; j++){
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.addEventListener("click", function(){
+          this.classList.toggle("active");
+        })
+
+        let cardTop = document.createElement("p");
+        cardTop.classList.add("cardTop");
+        cardTop.innerHTML = data[j][0];
+
+        let cardBack = document.createElement("p");
+        cardBack.classList.add("cardBack");
+        for(var k=0; k<data[j].length-1; k++){
+          if(data[j][k+1] == ""){
+            card.style.height = String(2.5 * k + 2 * 2 + 2 * 2) + "rem";
+            cardTop.style.height = String(2.5 * k + 2 * 2) + "rem";
+            cardTop.style.lineHeight = String(2.5 * k + 2 * 2) + "rem";
+            cardBack.style.height = String(2.5 * k + 2 * 2) + "rem";
+            break;
+          }
+          
+          let content = document.createElement("p");
+          content.innerHTML = data[j][k+1];
+          cardBack.appendChild(content);
+        }
+
+        card.appendChild(cardTop);
+        card.appendChild(cardBack);
+        cardSet.appendChild(card);
+      }
+      document.getElementById("deck").appendChild(cardSet);
     });
   }
 }
