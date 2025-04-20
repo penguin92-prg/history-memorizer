@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+html,body{
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: #fffff0;
+
+  font-size: 8px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+h1{
+  display: block;
+
+  width: 80%;
+  height: 5rem;
+
+  margin: 3rem auto 0 auto;
+  padding: 0;
+
+  color: #222222;
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 5rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0.125rem;
+}
+
+p#description{
+  display: none;
+  
+  width: 80%;
+  height: 3rem;
+
+  margin: 5rem auto 0 auto;
+  padding: 0;
+
+  color: #222222;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 3rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+p#description.active{
+  display: block;
+}
+
+main#container{
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  
+  width: 80%;
+  height: auto;
+
+  margin: 3rem auto 0 auto;
+  padding: 0;
+}
+
+main#container.active{
+  display: grid;
+}
+
+main#container>button{
+  display: block;
+  
+  width: 100%;
+  height: calc(5rem + 2rem * 2);
+
+  margin: 0;
+  padding: 2rem;
+
+  background-color: #eeeed8;
+  border: none;
+  border-radius: 2rem;
+  box-shadow:  1rem 1rem 3rem #ddddc8,
+               -1rem -1rem 3rem #ffffe8;
+
+  color: #222222;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 5rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+main#deck{
+  display: none;
+
+  width: 100%;
+  height: calc(100dvh - 5rem - 3rem - 3rem);
+
+  margin: 3rem 0 0 0;
+  padding: 0;
+
+  background-color: #eeeed8;
+}
+
+main#deck.active{
+  display: block;
+}
