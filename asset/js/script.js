@@ -38,7 +38,6 @@ async function main(){
 
     // 以下ファイルが存在する場合
     await fetchCSV("./asset/csv/" + String(i+1) + ".csv").then(data => {
-      console.log(data);
 
       // カードセットの選択ボタン
       let cardSetBtn = document.createElement("button");
@@ -53,7 +52,6 @@ async function main(){
 
       document.getElementById("container").appendChild(cardSetBtn);
 
-      console.log(data.length);
       let cardSet = document.createElement("div");
       cardSet.classList.add("cardSet");
       cardSet.setAttribute("id", "cardSet" + String(i+1));
