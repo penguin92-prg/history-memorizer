@@ -108,7 +108,7 @@ main#container{
   height: auto;
 
   margin: 3rem auto 0 auto;
-  padding: 0;
+  padding: 0 0 5rem 0;
 }
 
 main#container.active{
