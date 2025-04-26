@@ -91,25 +91,65 @@ async function main(){
       document.getElementById("deck").appendChild(cardSet);
     });
   }
+  
+  // パーティクル動作を設定
+  for(var i=0; i<document.getElementById("particles").children.length; i++){
+    document.getElementById("particles").children[i].style.left = String(Math.floor(Math.random() * 151) - 25) + "%";
+    const size = (Math.floor(Math.random() * 8) + 1.5) * 10;
+    document.getElementById("particles").children[i].style.width = String(size) + "px";
+    document.getElementById("particles").children[i].style.height = String(size) + "px";
+    document.getElementById("particles").children[i].style.borderRadius = String(size * 0.1) + "px";
+    document.getElementById("particles").children[i].style.animationDuration = String(Math.floor(Math.random() * 10) * 2 + 10) + "s";
+    document.getElementById("particles").children[i].style.animationDelay = String(Math.floor(Math.random() * 10) * 2) + "s";
+
+    addAnimation(`
+      @keyframes animate{
+        0%{
+          top: -100px;
+          transform: rotate(720deg);
+        }
+
+        100%{
+          top: ${document.getElementById("home").scrollHeight + 100}px;
+          transform: rotate(0);
+        }
+      }
+    `);
+  }
 }
 
-main();
 
-document.getElementById("homeBtn").addEventListener("click", function(){
-  document.getElementById("home").classList.add("active");
-  document.getElementById("deck").classList.remove("active");
-  document.getElementsByTagName("nav")[0].classList.remove("active");
-  document.querySelectorAll(".cardSet").forEach(function(value){
-    value.classList.remove("active");
+let dynamicStyles = null;
+function addAnimation( cssstr ) {
+    if ( ! dynamicStyles ) {
+        dynamicStyles = document.createElement( 'style' );
+        document.head.appendChild( dynamicStyles );
+    }
+    dynamicStyles.sheet.insertRule( cssstr, dynamicStyles.length);
+}
+
+window.addEventListener("load", function(){
+  // CSV読込･DOM作成
+  main();
+
+  // ボタンにイベントリスナーを登録
+  document.getElementById("homeBtn").addEventListener("click", function(){
+    document.getElementById("home").classList.add("active");
+    document.getElementById("deck").classList.remove("active");
+    document.getElementsByTagName("nav")[0].classList.remove("active");
+    document.querySelectorAll(".cardSet").forEach(function(value){
+      value.classList.remove("active");
+    });
   });
-});
 
-document.getElementById("shuffle").addEventListener("click", function(){
-  let obj = document.getElementsByClassName("cardSet active")[0]
-  let len = obj.childElementCount;
-  
-  for(var i=0; i<100; i++){
-    let a = Math.floor(Math.random() * len); 
-    obj.appendChild(obj.children[a]);
-  }
+  // シャッフルボタンの動作を登録
+  document.getElementById("shuffle").addEventListener("click", function(){
+    let obj = document.getElementsByClassName("cardSet active")[0]
+    let len = obj.childElementCount;
+    
+    for(var i=0; i<100; i++){
+      let a = Math.floor(Math.random() * len); 
+      obj.appendChild(obj.children[a]);
+    }
+  });
 });
