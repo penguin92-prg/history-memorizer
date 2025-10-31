@@ -63,6 +63,7 @@ async function main(){
         document.getElementById("deck").classList.add("active");
         document.getElementsByTagName("nav")[0].classList.add("active");
         document.getElementById(this.getAttribute("id").replace("Btn", "")).classList.add("active");
+        document.getElementById("shuffle").click();
       });
 
       document.getElementById("container").appendChild(cardSetBtn);
