@@ -10,6 +10,10 @@ const checkFileExistence = async function(url) {
   }
 };
 
+// ==================================================
+// ==================================================
+// ==================================================
+
 // CSVファイル読込関数
 async function fetchCSV(url) {
   try {
@@ -29,20 +33,30 @@ async function fetchCSV(url) {
   }
 }
 
+// ==================================================
+// ==================================================
+// ==================================================
+
 // メイン関数
 async function main(){
+
+  // CSVファイルを「1.csv」から順に読み込んでいく
   for(var i=0; i>=0; i++){
     if(await checkFileExistence("./asset/csv/" + String(i+1) + ".csv")){
       break;
     }
 
-    // 以下ファイルが存在する場合
+    // ファイルが存在する場合
     await fetchCSV("./asset/csv/" + String(i+1) + ".csv").then(data => {
 
-      // カードセットの選択ボタン
+      // ==================================================
+
+      // カードセットの選択ボタンを作成
       let cardSetBtn = document.createElement("button");
       cardSetBtn.setAttribute("id", "cardSetBtn" + String(i+1));
       cardSetBtn.innerHTML = data[0][0];
+
+      // ==================================================
 
       cardSetBtn.addEventListener("click", function(){
         document.getElementById("home").classList.remove("active");
@@ -53,80 +67,97 @@ async function main(){
 
       document.getElementById("container").appendChild(cardSetBtn);
 
+      // ==================================================
+      // ==================================================
+      // ==================================================
+
+      // カードを作成
       let cardSet = document.createElement("div");
       cardSet.classList.add("cardSet");
       cardSet.setAttribute("id", "cardSet" + String(i+1));
 
       for(var j=1; j<data.length; j++){
+
+        // カード本体を作成
         let card = document.createElement("div");
         card.classList.add("card");
         card.addEventListener("click", function(){
           this.classList.toggle("active");
         })
 
-        let cardTop = document.createElement("p");
+        // カードの表面を作成
+        let cardTop = document.createElement("div");
         cardTop.classList.add("cardTop");
-        cardTop.innerHTML = data[j][0];
+        let question = document.createElement("p");
+        question.innerText = data[j][0].replaceAll("　", "\n");
+        cardTop.appendChild(question);
 
-        let cardBack = document.createElement("p");
+        // カードの裏面を作成
+        let cardBack = document.createElement("div");
         cardBack.classList.add("cardBack");
-        for(var k=0; k<data[j].length-1; k++){
-          if(data[j][k+1] == ""){
-            card.style.height = String(2.5 * k + 2 * 2 + 2 * 2) + "rem";
-            cardTop.style.height = String(2.5 * k + 2 * 2) + "rem";
-            cardTop.style.lineHeight = String(2.5 * k + 2 * 2) + "rem";
-            cardBack.style.height = String(2.5 * k + 2 * 2) + "rem";
-            break;
-          }
-          
-          let content = document.createElement("p");
-          content.innerHTML = data[j][k+1];
-          cardBack.appendChild(content);
+        let answer = document.createElement("p");
+        answer.innerHTML = data[j][1];
+        cardBack.appendChild(answer);
+        if(data[j][2] != ""){
+          let addition = document.createElement("span");
+          addition.innerHTML = data[j][2];
+          cardBack.appendChild(addition);
         }
 
         card.appendChild(cardTop);
         card.appendChild(cardBack);
         cardSet.appendChild(card);
+
       }
       document.getElementById("deck").appendChild(cardSet);
+
+      requestAnimationFrame(() => {
+        // 一時的に表示して計測（ユーザーには見えない）
+        cardSet.style.display = "flex";
+        cardSet.style.visibility = "hidden";
+        cardSet.style.position = "absolute";
+
+        // そのセット内のカードだけを処理
+        adjustHeightsForSet(cardSet);
+
+        // 元に戻す
+        cardSet.style.display = "";
+        cardSet.style.visibility = "";
+        cardSet.style.position = "";
+      });
     });
   }
-  
-  // パーティクル動作を設定
-  for(var i=0; i<document.getElementById("particles").children.length; i++){
-    document.getElementById("particles").children[i].style.left = String(Math.floor(Math.random() * 151) - 25) + "%";
-    const size = (Math.floor(Math.random() * 8) + 1.5) * 10;
-    document.getElementById("particles").children[i].style.width = String(size) + "px";
-    document.getElementById("particles").children[i].style.height = String(size) + "px";
-    document.getElementById("particles").children[i].style.borderRadius = String(size * 0.1) + "px";
-    document.getElementById("particles").children[i].style.animationDuration = String(Math.floor(Math.random() * 10) * 2 + 10) + "s";
-    document.getElementById("particles").children[i].style.animationDelay = String(Math.floor(Math.random() * 10) * 2) + "s";
+}
 
-    addAnimation(`
-      @keyframes animate{
-        0%{
-          top: -100px;
-          transform: rotate(720deg);
-        }
+function adjustHeightsForSet(cardSet) {
+  const cards = cardSet.querySelectorAll(".card");
+  cards.forEach(card => {
+    const front = card.querySelector('.cardTop');
+    const back = card.querySelector('.cardBack');
 
-        100%{
-          top: ${document.getElementById("home").scrollHeight + 100}px;
-          transform: rotate(0);
-        }
-      }
-    `);
-  }
+    // 場合によって front/back が null になり得るのでガード
+    if (!front || !back) return;
+
+    card.style.removeProperty("height");
+    front.style.removeProperty("height");
+    back.style.removeProperty("height");
+
+    void card.offsetHeight;
+
+    const frontHeight = front.scrollHeight;
+    const backHeight = back.scrollHeight;
+    const h = Math.max(frontHeight, backHeight);
+
+    console.log(h);
+
+    // 親と子に高さを入れる
+    card.style.height = h + 'px';
+    front.style.height = h + 'px';
+    back.style.height = h + 'px';
+  });
 }
 
 
-let dynamicStyles = null;
-function addAnimation( cssstr ) {
-    if ( ! dynamicStyles ) {
-        dynamicStyles = document.createElement( 'style' );
-        document.head.appendChild( dynamicStyles );
-    }
-    dynamicStyles.sheet.insertRule( cssstr, dynamicStyles.length);
-}
 
 window.addEventListener("load", function(){
   // CSV読込･DOM作成
@@ -147,7 +178,7 @@ window.addEventListener("load", function(){
     let obj = document.getElementsByClassName("cardSet active")[0]
     let len = obj.childElementCount;
     
-    for(var i=0; i<100; i++){
+    for(var i=0; i<500; i++){
       let a = Math.floor(Math.random() * len); 
       obj.appendChild(obj.children[a]);
     }

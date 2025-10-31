@@ -1,61 +1,96 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+  <!-- prefix設定必要 -->
+  <head prefix="og: website:">
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="共通テスト世界史探究･歴史総合の対策用Webサイトです。勉強しよう！">
+
     <title>History-Memorizer</title>
+
+    <!-- ================================================== -->
+
+    <!-- アイコン読み込み(FontAwesome) -->
+    <script src="https://kit.fontawesome.com/55a94ac375.js" crossorigin="anonymous"></script>
+
+    <!-- ================================================== -->
+
+    <!-- リセットcss読み込み -->
+    <link rel="stylesheet" href="./asset/css/reset.css">
+
+    <!-- フォントcss読み込み -->
+    <!-- ページ読み込み高速化のためNotoSansJPはGoogleFontsのAPIを使用 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- css変数読み込み -->
+    <link rel="stylesheet" href="./asset/css/variable.css">
     
+    <!-- 自作css読み込み -->
+    <link rel="stylesheet" href="./asset/css/style-home.css">
+    <link rel="stylesheet" href="./asset/css/style-deck.css">
+
+    <!-- iPhone背景色用 -->
+    <meta name="theme-color" content="#f4f4f4">
+
+    <!-- ================================================== -->
+
+    <!-- ファビコン読み込み -->
     <link rel="icon" type="image/png" href="./asset/favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="./asset/favicon/favicon.svg" />
     <link rel="shortcut icon" href="./asset/favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="./asset/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="History-Memorizer" />
     <link rel="manifest" href="./asset/favicon/site.webmanifest" />
 
-    <link rel="stylesheet" href="./asset/css/reset.css">
-    <link rel="stylesheet" href="./asset/css/style.css">
+    <!-- ================================================== -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <!-- ページのデスクリプション -->
+    <meta property="og:url" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="History-Memorizer"/>
+    <meta property="og:description" content="共通テスト世界史探究･歴史総合の対策用Webサイトです。勉強しよう！"/>
+    <meta property="og:site_name" content="History-Memorizer"/>
+    <meta property="og:image" content=""/>
 
-    <script src="https://kit.fontawesome.com/55a94ac375.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <div id="home" class="active">
-      <h1>History-Memorizer</h1>
-  
-      <p id="description" class="active">カードセットを選択...</p>
+
+      <header>History-Memorizer</header>
+
+      <div id="description">
+        <h1>History-Memorizer</h1>
+        <h2>共通テスト 世界史探究･歴史総合 向け 暗記特訓サイト</h2>
+
+        <p>
+          このサイトは、共通テスト 世界史探究･歴史総合 を受験するために、覚えなければならない･覚えておきたい知識を単語カード形式で閲覧･暗記するために作成しました。<br>
+          下に表示されている単元別･カード形式別のカードデッキから、特訓したいデッキを選択することで特訓を開始できます。<br>
+          共通テストまで残りわずかです。頑張っていきましょう！
+        </p>
+      </div>
   
       <main id="container" class="active"></main>
 
-      <ul id="particles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <footer>
+        <p>&copy; 2025 penguin92-prg</p>
+      </footer>
+
     </div>
 
     <div id="deck">
-
     </div>
 
     <nav>
       <button id="homeBtn"><i class="fa-solid fa-house"></i>ホームへ</button>
       <button id="shuffle"><i class="fa-solid fa-shuffle"></i>順番シャッフル</button>
     </nav>
+
     
     <script src="./asset/js/script.js"></script>
   </body>

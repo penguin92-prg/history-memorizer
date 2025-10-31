@@ -1,0 +1,300 @@
+@charset "utf-8";
+
+div#deck{
+  position: absolute;
+  top: 0;
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  animation: .3s forwards anime-CtoR;
+}
+
+div#deck.active{
+  animation: .3s forwards anime-RtoC;
+}
+
+@keyframes anime-CtoL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+  to{
+    display: none;
+  }
+}
+
+@keyframes anime-LtoC {
+  from{
+    display: block;
+  }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div.cardSet{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
+
+  width: 80%;
+  height: auto;
+
+  margin: 5rem auto 0 auto;
+  padding: 0;
+}
+
+div.cardSet.active{
+  display: flex;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div.card{
+  position: relative;
+
+  display: block;
+  
+  width: 100%;
+  height: auto;
+
+  margin: 0 auto;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  perspective: 1000px;
+}
+
+/* ================================================== */
+
+div.card>.cardTop, div.card>.cardBack{
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
+
+  width: 100%;
+  /* height: 100%; */
+
+  margin: 0;
+  padding: 2rem;
+
+  box-sizing: border-box;
+
+  outline: solid 1px var(--base4);
+  border: none;
+  border-radius: 1.5rem;
+  
+  background-color: var(--base1);
+  
+  backdrop-filter: blur(1rem) saturate(180%);
+  -webkit-backdrop-filter: blur(1rem) saturate(180%);
+
+  backface-visibility: hidden;
+
+  transition: all .3s;
+  transform-origin: center center;
+}
+
+div.card>.cardBack{  
+  background-color: var(--text1);
+}
+
+/* ================================================== */
+
+div.card>.cardTop>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+  
+  color: var(--text1);
+  font-size: 1.75rem;
+  font-weight: 500;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 2.5rem;
+  text-decoration: none;
+  text-align: justify;
+  letter-spacing: 0;
+}
+
+div.card>.cardBack>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+  
+  color: var(--base1);
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 2.5rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+div.card>.cardBack>span{
+  position: relative;
+
+  display: block;
+
+  width: calc(100% - 2rem);
+  height: fit-content;
+
+  margin: 0 0 0 2rem;
+  padding: 0;
+  
+  color: var(--base1);
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 2rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+div.card>.cardBack>span::before{
+  content: ">";
+
+  position: absolute;
+  top: 0;
+  left: -1.5rem;
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+  
+  color: var(--base1);
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 2rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+div.card>.cardTop{
+  transform: rotateY(0);
+}
+
+div.card>.cardBack{
+  transform: rotateY(180deg);
+}
+
+div.card.active>.cardTop{
+  transform: rotateY(180deg);
+}
+
+div.card.active>.cardBack{
+  transform: rotateY(0);
+}
+
+div.card:nth-last-of-type(1){
+  margin-bottom: calc(8rem + 4rem);
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+nav{
+  position: fixed;
+  top: calc(100dvh - 5rem);
+  left: 0;
+  z-index: 5;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  animation: .3s forwards anime-CtoR;
+}
+
+nav.active{
+  animation: .3s forwards anime-RtoC;
+}
+
+nav>button{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 0;
+
+  background-color: var(--base3);
+
+  color: var(--text2);
+  font-size: 1.75rem;
+  font-weight: 500;
+  font-family: "Noto Sans JP", sans-serif;
+  
+  line-height: 5rem;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+nav>button>i{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0 1rem 0 0;
+  padding: 0;
+
+  color: var(--text2);
+  font-size: 2rem;
+  
+  line-height: 5rem;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0;
+}

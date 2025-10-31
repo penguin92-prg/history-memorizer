@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+:root{
+  /* 数値 */
+  --mainWidth: 60%;
+
+  /* 色 */
+  --base1: #ffffff;
+  --base2: #f4f4f4;
+  --base3: #e6e6e6;
+  --base4: #cccccc;
+
+  --text1: #444444;
+  --text2: #666666;
+  --text3: #888888;
+  --text4: #aaaaaa;
+  --text5: #cccccc;
+  
+  /* パラメータ */
+  --shadow1: 0 0 0.5rem rgba(0 0 0 / 24%);
+  --shadow2: 0 0 0.5rem rgba(0 0 0 / 16%);
+  --shadow3: 0 0 0.5rem rgba(0 0 0 / 8%);
+}
+
+@media (max-width: 500px) {
+  :root{
+    --mainWidth: 80%;
+  }
+}

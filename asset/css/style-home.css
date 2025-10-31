@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+html, body{
+  width: 100dvw;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--base2);
+
+  font-size: 8px;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div#home{
+  position: absolute;
+  top: 0;
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  animation: .3s forwards anime-CtoL;
+}
+
+div#home.active{
+  animation: .3s forwards anime-LtoC;
+}
+
+@keyframes anime-RtoC {
+  from{
+    display: block;
+  }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes anime-CtoR {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+  to{
+    display: none;
+  }
+}
+
+header{
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: var(--mainWidth);
+  height: 8rem;
+
+  margin: 0 auto 0 auto;
+  padding: 0 calc((100% - var(--mainWidth)) / 2);
+
+  background-color: var(--base3);
+
+  color: var(--text1);
+  font-size: 3rem;
+  font-weight: 400;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 8rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div#description{
+  display: block;
+  
+  width: var(--mainWidth);
+  height: auto;
+
+  margin: 5rem auto;
+  padding: 0;
+}
+
+div#description>h1{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 2rem 0;
+
+  color: var(--text1);
+  font-size: 6rem;
+  font-weight: 400;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 8rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+div#description>h2{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 1rem 2rem;
+
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+
+  background-color: var(--text1);
+
+  color: var(--base1);
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 3rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+div#description>p{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 2rem 0 0 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-size: 1.75rem;
+  font-weight: 500;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 3rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+main#container{
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  
+  width: var(--mainWidth);
+  height: auto;
+
+  margin: 0 auto 0 auto;
+  padding: 0;
+}
+
+main#container.active{
+  display: grid;
+}
+
+main#container>button{
+  display: block;
+  
+  width: 100%;
+  height: calc(5rem + 2rem * 2);
+
+  margin: 0;
+  padding: 2rem;
+
+  outline: solid 1px var(--base4);
+  border: none;
+  border-radius: 1rem;
+  
+  background-color: transparent;
+
+  color: var(--text1);
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 4rem;
+  text-decoration: none;
+  text-align: left;
+  letter-spacing: 0;
+
+  transition: all .2s;
+}
+main#container>button:hover{
+  background-color: var(--base3);
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+footer{
+  display: block;
+
+  width: var(--mainWidth);
+  height: auto;
+
+  margin: 5rem 0 0 0;
+  padding: 0 calc((100% - var(--mainWidth)) / 2);
+
+  background-color: var(--base4);
+}
+
+footer>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-family: "Nunito Sans", "Noto Sans JP", sans-serif;
+  
+  line-height: 5rem;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0;
+}
