@@ -97,11 +97,11 @@ async function main(){
         let cardBack = document.createElement("div");
         cardBack.classList.add("cardBack");
         let answer = document.createElement("p");
-        answer.innerHTML = data[j][1];
+        answer.innerHTML = data[j][1].replaceAll("　", "\n");;
         cardBack.appendChild(answer);
         if(data[j][2] != ""){
           let addition = document.createElement("span");
-          addition.innerHTML = data[j][2];
+          addition.innerHTML = data[j][2].replaceAll("　", "\n");;
           cardBack.appendChild(addition);
         }
 
