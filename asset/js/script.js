@@ -63,7 +63,6 @@ async function main(){
         document.getElementById("deck").classList.add("active");
         document.getElementsByTagName("nav")[0].classList.add("active");
         document.getElementById(this.getAttribute("id").replace("Btn", "")).classList.add("active");
-        document.getElementById("shuffle").click();
       });
 
       document.getElementById("container").appendChild(cardSetBtn);
@@ -82,9 +81,10 @@ async function main(){
         // カード本体を作成
         let card = document.createElement("div");
         card.classList.add("card");
+        card.setAttribute("id", "cardSet" + String(i+1) + "-card" + j);
         card.addEventListener("click", function(){
           this.classList.toggle("active");
-        })
+        });
 
         // カードの表面を作成
         let cardTop = document.createElement("div");
@@ -165,7 +165,7 @@ window.addEventListener("load", function(){
   main();
 
   // ボタンにイベントリスナーを登録
-  document.getElementById("homeBtn").addEventListener("click", function(){
+  document.getElementById("backBtn").addEventListener("click", function(){
     document.getElementById("home").classList.add("active");
     document.getElementById("deck").classList.remove("active");
     document.getElementsByTagName("nav")[0].classList.remove("active");
@@ -174,8 +174,8 @@ window.addEventListener("load", function(){
     });
   });
 
-  // シャッフルボタンの動作を登録
-  document.getElementById("shuffle").addEventListener("click", function(){
+  // カードをシャッフルする
+  document.getElementById("shuffleBtn").addEventListener("click", function(){
     let obj = document.getElementsByClassName("cardSet active")[0]
     let len = obj.childElementCount;
     
@@ -183,5 +183,31 @@ window.addEventListener("load", function(){
       let a = Math.floor(Math.random() * len); 
       obj.appendChild(obj.children[a]);
     }
+  });
+
+  // 元の順番に戻す
+  document.getElementById("organizeBtn").addEventListener("click", function(){
+    let elements = Array.from(document.getElementsByClassName("cardSet active")[0].querySelectorAll(".card"));
+    
+    elements.sort((a, b) => {
+      const idA = parseInt(a.id.match(/cardSet\d+-card(\d+)/)[1]);
+      const idB = parseInt(b.id.match(/cardSet\d+-card(\d+)/)[1]);
+      return idA - idB; // 昇順にソート
+    });
+    let tempContainer = document.createElement("div");
+
+    elements.forEach(element => {
+      tempContainer.appendChild(element);
+    });
+
+    Array.from(document.getElementsByClassName("cardSet active")[0].children).forEach(elem => {
+      elem.remove();
+    });
+    Array.from(tempContainer.children).forEach(value => {
+      document.getElementsByClassName("cardSet active")[0].appendChild(value);
+    });
+
+    tempContainer.remove();
+
   });
 });

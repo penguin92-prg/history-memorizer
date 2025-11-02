@@ -236,18 +236,25 @@ div.card:nth-last-of-type(1){
 nav{
   position: fixed;
   top: calc(100dvh - 5rem);
-  left: 0;
+  left: 3rem;
   z-index: 5;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
 
-  width: 100%;
+  width: calc(100% - 3rem * 2);
   height: fit-content;
 
   margin: 0;
   padding: 0;
+
+  border: none;
+  border-radius: 1rem 1rem 0 0;
+
+  background-color: var(--base1);
+
+  box-shadow: var(--shadow2);
 
   animation: .3s forwards anime-CtoR;
 }
@@ -268,11 +275,11 @@ nav>button{
   border: none;
   border-radius: 0;
 
-  background-color: var(--base3);
+  background-color: var(--transparent);
 
   color: var(--text2);
-  font-size: 1.75rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 400;
   font-family: "Noto Sans JP", sans-serif;
   
   line-height: 5rem;
@@ -291,7 +298,7 @@ nav>button>i{
   padding: 0;
 
   color: var(--text2);
-  font-size: 2rem;
+  font-size: 1.5rem;
   
   line-height: 5rem;
   text-decoration: none;
