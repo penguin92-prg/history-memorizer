@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+@keyframes anime-CtoL {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100dvw);
+  }
+  to{
+    display: none;
+  }
+}
+
+@keyframes anime-LtoC {
+  from{
+    display: block;
+  }
+  0% {
+    transform: translateX(-100dvw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes anime-RtoC {
+  from{
+    display: block;
+  }
+  0% {
+    transform: translateX(100dvw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes anime-CtoR {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100dvw);
+  }
+  to{
+    display: none;
+  }
+}

@@ -42,18 +42,18 @@ async function main(){
 
   // CSVファイルを「1.csv」から順に読み込んでいく
   for(var i=0; i>=0; i++){
-    if(await checkFileExistence("./asset/csv/" + String(i+1) + ".csv")){
+    if(await checkFileExistence("./asset/csv/" + String(i) + ".csv")){
       break;
     }
 
     // ファイルが存在する場合
-    await fetchCSV("./asset/csv/" + String(i+1) + ".csv").then(data => {
+    await fetchCSV("./asset/csv/" + String(i) + ".csv").then(data => {
 
       // ==================================================
 
       // カードセットの選択ボタンを作成
       let cardSetBtn = document.createElement("button");
-      cardSetBtn.setAttribute("id", "cardSetBtn" + String(i+1));
+      cardSetBtn.setAttribute("id", "cardSetBtn" + String(i));
       cardSetBtn.innerHTML = data[0][0];
 
       // ==================================================
@@ -61,7 +61,9 @@ async function main(){
       cardSetBtn.addEventListener("click", function(){
         document.getElementById("home").classList.remove("active");
         document.getElementById("deck").classList.add("active");
-        document.getElementsByTagName("nav")[0].classList.add("active");
+        document.getElementById("topNav").classList.add("active");
+        document.querySelector("#topNav>h3").innerText = this.innerText;
+        document.getElementById("bottomNav").classList.add("active");
         document.getElementById(this.getAttribute("id").replace("Btn", "")).classList.add("active");
       });
 
@@ -74,14 +76,14 @@ async function main(){
       // カードを作成
       let cardSet = document.createElement("div");
       cardSet.classList.add("cardSet");
-      cardSet.setAttribute("id", "cardSet" + String(i+1));
+      cardSet.setAttribute("id", "cardSet" + String(i));
 
       for(var j=1; j<data.length; j++){
 
         // カード本体を作成
         let card = document.createElement("div");
         card.classList.add("card");
-        card.setAttribute("id", "cardSet" + String(i+1) + "-card" + j);
+        card.setAttribute("id", "cardSet" + String(i) + "-card" + j);
         card.addEventListener("click", function(){
           this.classList.toggle("active");
         });
@@ -168,7 +170,8 @@ window.addEventListener("load", function(){
   document.getElementById("backBtn").addEventListener("click", function(){
     document.getElementById("home").classList.add("active");
     document.getElementById("deck").classList.remove("active");
-    document.getElementsByTagName("nav")[0].classList.remove("active");
+    document.getElementById("topNav").classList.remove("active");
+    document.getElementById("bottomNav").classList.remove("active");
     document.querySelectorAll(".cardSet").forEach(function(value){
       value.classList.remove("active");
     });
